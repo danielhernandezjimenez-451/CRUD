@@ -1,8 +1,11 @@
 package com.academia.backend.crud;
 
 import java.util.LinkedList;
+import java.awt.Dimension;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
 
 public class Principal {
 	
