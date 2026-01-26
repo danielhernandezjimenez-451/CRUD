@@ -3,6 +3,7 @@ package com.academia.backend.crud;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Optional;
 import java.util.Scanner;
 
 
@@ -20,6 +21,7 @@ public class Vista {
 		sb.append("Modificar productos\n");
 		sb.append("Eliminar productos\n");
 		sb.append("Buscar productos\n");
+		sb.append("Pronostico economico\n");
 		sb.append("Salir\n");
 		sb.append("Escribe la accion que deseas realizar");
 		System.out.println(sb);
@@ -204,6 +206,16 @@ public class Vista {
 		System.out.print(titulo);
 		System.out.println("-".repeat(102));
 		System.out.println(productosFiltrados);
+		System.out.println("Presiona enter para continuar");
+		scan.nextLine();
+	}
+	
+	public static void mostrarPronosticoEconomico() {
+		limpiarPantalla();
+		System.out.println("$ $ $ $ $ $ $ $ $ PRONOSTICO ECONOMICO $ $ $ $ $ $ $ $ $");
+		System.out.println("Productos totales en el inventario: " + Producto.calcularCantidadTotalInventario(Optional.of(Principal.productos)));
+		System.out.println("Inversión total: $" + Producto.calcularInversionTotal(Optional.of(Principal.productos)));
+		System.out.println("Ganancia esperada: $" + Producto.calcularGananciaEsperada(Optional.of(Principal.productos)));
 		System.out.println("Presiona enter para continuar");
 		scan.nextLine();
 	}

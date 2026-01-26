@@ -41,6 +41,10 @@ public class Principal {
 				case "buscar":
 					Vista.buscarProductos();
 					break;
+					
+				case "pronostico":
+					Vista.mostrarPronosticoEconomico();
+					break;
 
 				case "salir":
 					System.out.println("Hasta luego");
