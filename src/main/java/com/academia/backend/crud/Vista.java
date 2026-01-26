@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Vista {
 
 	public static Scanner scan = new Scanner(System.in);
-	public static LinkedList <String> camposValidos = new LinkedList<>(Arrays.asList("codigo", "nombre", "contenido", "precio compra", "precio venta", "unidades"));
+	public static LinkedList <String> camposValidos = new LinkedList<>(Arrays.asList("codigo", "nombre", "contenido", "precio compra", "precio venta", "ganancia", "unidades"));
 
 	public static void mostrarMenuPrincipal() {
 		limpiarPantalla();
@@ -122,7 +122,7 @@ public class Vista {
 					do{
 						limpiarPantalla();
 						System.out.println("Ingrese el campo para filtrar los productos");
-						String campo = obtenerValorTexto("la opcion [codigo] [nombre] [contenido] [precio compra] [precio venta] [unidades]");
+						String campo = obtenerValorTexto("la opcion [codigo] [nombre] [contenido] [precio compra] [precio venta] [ganancia] [unidades]");
 						if(camposValidos.contains(campo)){
 							buscarPorCampo(campo);
 							campoValido = true;
@@ -141,61 +141,57 @@ public class Vista {
 		switch (campo) {
 			case "codigo":
 				String codigo = obtenerValorNumericoEnTexto("el codigo para filtrar productos");
-				for(Producto producto : Principal.productos){
-					if (producto.getId().equals(codigo)) {
-						sb.append(producto.toString());
-					}
-				}
+				Principal.productos.stream().
+					filter(producto -> producto.getId().equals(codigo)).
+					forEach(producto -> sb.append(producto.toString()));
 				mostrarProductosFiltrados(campo, sb.toString(), codigo);
 				break;
 
 			case "nombre":
 				String nombre = obtenerValorTexto("el nombre para filtrar productos");
-				for(Producto producto : Principal.productos){
-					if (producto.getNombre().equalsIgnoreCase(nombre)) {
-						sb.append(producto.toString());
-					}
-				}
+				Principal.productos.stream().
+					filter(producto -> producto.getNombre().equalsIgnoreCase(nombre)).
+					forEach(producto -> sb.append(producto.toString()));
 				mostrarProductosFiltrados(campo, sb.toString(), nombre);
 				break;
 
 			case "contenido":
 				double contenido = obtenerValorDoble("el contenido para filtrar productos");
-				for(Producto producto : Principal.productos){
-					if (producto.getContenido() == contenido) {
-						sb.append(producto.toString());
-					}
-				}
+				Principal.productos.stream().
+					filter(producto -> producto.getContenido() == contenido).
+					forEach(producto -> sb.append(producto.toString()));
 				mostrarProductosFiltrados(campo, sb.toString(), String.valueOf(contenido));
 				break;
 			
 			case "precio compra":
 				double precioCompra = obtenerValorDoble("el precio de compra para filtrar productos");
-				for(Producto producto : Principal.productos){
-					if (producto.getPrecioCompra()==precioCompra) {
-						sb.append(producto.toString());
-					}
-				}
+				Principal.productos.stream().
+					filter(producto -> producto.getPrecioCompra() == precioCompra).
+					forEach(producto -> sb.append(producto.toString()));
 				mostrarProductosFiltrados(campo, sb.toString(), String.valueOf(precioCompra));
 				break;
 			
 			case "precio venta":
 				double precioVenta = obtenerValorDoble("el precio de venta para filtrar productos");
-				for(Producto producto : Principal.productos){
-					if (producto.getPrecioVenta()==precioVenta) {
-						sb.append(producto.toString());
-					}
-				}
+				Principal.productos.stream().
+					filter(producto -> producto.getPrecioVenta() == precioVenta).
+					forEach(producto -> sb.append(producto.toString()));
 				mostrarProductosFiltrados(campo, sb.toString(),String.valueOf(precioVenta));
+				break;
+				
+			case "ganancia":
+				double ganancia = obtenerValorDoble("la ganancia para filtrar productos");
+				Principal.productos.stream().
+					filter(producto -> producto.getGanancia() == ganancia).
+					forEach(producto -> sb.append(producto.toString()));
+				mostrarProductosFiltrados(campo, sb.toString(), String.valueOf(ganancia));
 				break;
 
 			case "unidades":
 				int unidades = obtenerValorEntero("la cantidad de unidades para filtrar productos");
-				for(Producto producto : Principal.productos){  
-					if (producto.getUnidades()==unidades) {
-						sb.append(producto.toString());
-					}
-				}
+				Principal.productos.stream().
+				filter(producto -> producto.getUnidades() == unidades).
+				forEach(producto -> sb.append(producto.toString()));
 				mostrarProductosFiltrados(campo, sb.toString(), String.valueOf(unidades));
 				break;
 		}

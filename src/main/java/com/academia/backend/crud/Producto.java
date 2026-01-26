@@ -90,6 +90,10 @@ public class Producto {
 		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
 		gananciaLote = calcularGananciaLote(unidades, ganancia);
 	}
+	
+	public double getGanancia() {
+		return ganancia;
+	}
 
 	public int getUnidades() {
 		return unidades;
