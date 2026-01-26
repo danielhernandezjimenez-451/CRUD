@@ -31,6 +31,8 @@ public class Producto {
 		this.precioVenta = precioVenta;
 		this.unidades = unidades;
 		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
+		precioCompraLote = calcularPrecioCompraLote(unidades, precioCompra);
+		gananciaLote = calcularGananciaLote(unidades, ganancia);
 	}
 	
 	public Producto(double precioCompra, double precioVenta, int unidades) {
@@ -158,7 +160,7 @@ public class Producto {
 	public static double calcularGananciaEsperada(Optional<LinkedList<Producto>> productosOpt) {
 		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
 		double gananciaEsperada = productos.stream().
-				mapToDouble(producto -> producto.getGananciaLote()).
+				mapToDouble(Producto::getGananciaLote).
 				sum();
 		return gananciaEsperada;
 	}

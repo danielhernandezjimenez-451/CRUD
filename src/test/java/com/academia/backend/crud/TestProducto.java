@@ -10,7 +10,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TestProductos {
+public class TestProducto {
 	
 	@Test
 	void obtenerGananciaIndividualPrecioVentaVeintePrecioCompraQuinceEsCinco() {
@@ -137,7 +137,7 @@ public class TestProductos {
 	@Test
 	void calcularGananciaConProductosNullDaCero() {
 		LinkedList <Producto> productos = null;
-		assertEquals(0, Producto.calcularCantidadTotalInventario(Optional.of(productos)));
+		assertEquals(0, Producto.calcularGananciaEsperada(Optional.ofNullable(productos)));
 	}
 	
 	
