@@ -88,7 +88,11 @@ public class Producto {
 	}
 	
 	public static double calcularGananciaIndividual(double precioVenta, double precioCompra) {
-		return precioVenta - precioCompra;
+		if (precioVenta <= 0 || precioCompra <= 0 || precioVenta <= precioCompra) {
+			throw new IllegalArgumentException("Los precios no pueden ser 0 o menores. La venta no puede ser menor o igual que la compra");
+		}else {
+			return precioVenta - precioCompra;
+		}
 	}
 	
 	public static double calcularGananciaLote(int unidades, double ganancia) {
