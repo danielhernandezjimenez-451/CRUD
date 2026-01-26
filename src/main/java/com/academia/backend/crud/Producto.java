@@ -108,6 +108,14 @@ public class Producto {
 		}
 	}
 	
+	public static double calcularPrecioCompraLote(int unidades, double precioCompra) {
+		if (unidades <= 0 || precioCompra <= 0) {
+			throw new IllegalArgumentException("Las unidades o la ganancia no pueden ser 0");
+		}else {
+			return unidades * precioCompra;
+		}
+	}
+	
 	public static int calcularCantidadTotalInventario(Optional <LinkedList<Producto>> productosOpt) {
 		int totalProductos = 0;
 		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());

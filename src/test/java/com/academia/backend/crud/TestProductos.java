@@ -39,19 +39,39 @@ public class TestProductos {
 	}
 	
 	@Test
-	void obtenerGananciaLoteDiezUnidadesGananciaCincoDaCincuenta() {
+	void calcularGananciaLoteDiezUnidadesGananciaCincoDaCincuenta() {
 		assertEquals(50, Producto.calcularGananciaLote(10, 5));
 	}
 	
 	@Test
-	void obtenerGananciaLoteCeroUnidadesLanzaExcepcion(){
+	void calcularGananciaLoteCeroUnidadesLanzaExcepcion(){
 		assertThrows(IllegalArgumentException.class, () -> {
 			Producto.calcularGananciaLote(0, 10);
 		});
 	}
 	
 	@Test
-	void obtenerGananciaLoteCeroGananciaLanzaExcepcion() {
+	void calcularGananciaLoteCeroGananciaLanzaExcepcion() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Producto.calcularGananciaLote(10, 0);
+		});
+	}
+	
+	//costo lote
+	@Test
+	void calcularPrecioCompraLoteDiezUnidadesPrecioCompraCincoDaCincuenta() {
+		assertEquals(50, Producto.calcularPrecioCompraLote(10, 5));
+	}
+	
+	@Test
+	void calcularPrecioCompraLoteCeroUnidadesLanzaExcepcion(){
+		assertThrows(IllegalArgumentException.class, () -> {
+			Producto.calcularPrecioCompraLote(0, 10);
+		});
+	}
+	
+	@Test
+	void calcularPrecioCompraLotePrecioCompraCeroLanzaExcepcion() {
 		assertThrows(IllegalArgumentException.class, () -> {
 			Producto.calcularGananciaLote(10, 0);
 		});
