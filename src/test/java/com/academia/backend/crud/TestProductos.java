@@ -57,7 +57,6 @@ public class TestProductos {
 		});
 	}
 	
-	//costo lote
 	@Test
 	void calcularPrecioCompraLoteDiezUnidadesPrecioCompraCincoDaCincuenta() {
 		assertEquals(50, Producto.calcularPrecioCompraLote(10, 5));
@@ -98,7 +97,48 @@ public class TestProductos {
 		assertThrows(NullPointerException.class, () -> Producto.calcularCantidadTotalInventario(Optional.of(productos)));
 	}
 	
+	@Test
+	void calcularInversionTotalTresProductosPrecioCompraLoteDiezEsTreinta() {
+		LinkedList <Producto> productos = new LinkedList<>();
+		productos.add(new Producto(10.0, 5.0));
+		productos.add(new Producto(10.0, 5.0));
+		productos.add(new Producto(10.0, 5.0));
+		assertEquals(30, Producto.calcularInversionTotal(Optional.of(productos)));
+	}
 	
+	
+	@Test
+	void calcularInversionTotalSinProductosDaCero() {
+		LinkedList <Producto> productos = new LinkedList<>();
+		assertEquals(0, Producto.calcularInversionTotal(Optional.of(productos)));
+	}
+	
+	@Test
+	void calcularInversionTotalProductosNullDaCero() {
+		LinkedList <Producto> productos = null;
+		assertThrows(NullPointerException.class, () -> Producto.calcularInversionTotal(Optional.of(productos)));
+	}
+	
+	@Test
+	void calcularGananciaEsperadaTresProductosConGananciaLoteTreintaDaNoventa() {
+		LinkedList <Producto> productos = new LinkedList<>();
+		productos.add(new Producto(10.0, 30));
+		productos.add(new Producto(10.0, 30));
+		productos.add(new Producto(10.0, 30));
+		assertEquals(90, Producto.calcularGananciaEsperada(Optional.of(productos)));
+	}
+	
+	@Test
+	void calcularGananciaSinProductosDaCero() {
+		LinkedList <Producto> productos = new LinkedList<>();
+		assertEquals(0, Producto.calcularGananciaEsperada(Optional.of(productos)));
+	}
+	
+	@Test
+	void calcularGananciaConProductosNullDaCero() {
+		LinkedList <Producto> productos = null;
+		assertEquals(0, Producto.calcularCantidadTotalInventario(Optional.of(productos)));
+	}
 	
 	
 }

@@ -15,6 +15,8 @@ public class Producto {
 	private double precioVenta;
 	private double ganancia;
 	private int unidades;
+	private double precioCompraLote;
+	private double gananciaLote;
 	
 	public Producto() {
 		
@@ -39,6 +41,11 @@ public class Producto {
 	
 	public Producto(int unidades) {
 		this.unidades = unidades;
+	}
+	
+	public Producto(double precioCompraLote, double gananciaLote){
+		this.precioCompraLote = precioCompraLote;
+		this.gananciaLote = gananciaLote;
 	}
 
 	public String getId(){
@@ -87,6 +94,22 @@ public class Producto {
 		this.unidades = unidades;
 	}
 	
+	public void setPrecioCompraLote(double precioCompraLote) {
+		this.precioCompraLote = precioCompraLote;
+	}
+	
+	public double getPrecioCompraLote() {
+		return precioCompraLote;
+	}
+	
+	public void setGananciaLote(double gananciaLote) {
+		this.gananciaLote = gananciaLote;
+	}
+	
+	public double getGananciaLote() {
+		return gananciaLote;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("| %-10s| %-20s| %-9s| $%-13.2f| $%-12.2f| $%-12.2f| %-8d|%n", id, nombre, contenido, precioCompra, precioVenta, ganancia, unidades);
@@ -102,7 +125,7 @@ public class Producto {
 	
 	public static double calcularGananciaLote(int unidades, double ganancia) {
 		if (unidades <= 0 || ganancia <= 0) {
-			throw new IllegalArgumentException("Las unidades o la ganancia no pueden ser 0");
+			throw new IllegalArgumentException("La ganancia o las unidades no pueden ser 0");
 		}else {
 			return unidades * ganancia;
 		}
@@ -110,35 +133,34 @@ public class Producto {
 	
 	public static double calcularPrecioCompraLote(int unidades, double precioCompra) {
 		if (unidades <= 0 || precioCompra <= 0) {
-			throw new IllegalArgumentException("Las unidades o la ganancia no pueden ser 0");
+			throw new IllegalArgumentException("El precio de compra o las unidades no pueden ser 0");
 		}else {
 			return unidades * precioCompra;
 		}
 	}
 	
 	public static int calcularCantidadTotalInventario(Optional <LinkedList<Producto>> productosOpt) {
-		int totalProductos = 0;
 		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
-		totalProductos = productos.stream().
+		int totalProductos = productos.stream().
 				mapToInt(Producto::getUnidades).
 				sum();
 		return totalProductos;
 	}
 	
-	/*
-	public static double calcularInversionTotal(LinkedList<Producto> producto) {
-		double inversionTotal = 0;
-		inversionTotal = productos.stream().
-				map((Producto producto : Productos) -> {}).
+	public static double calcularInversionTotal(Optional<LinkedList<Producto>> productosOpt) {
+		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
+		double inversionTotal = productos.stream().
+				mapToDouble(Producto::getPrecioCompraLote). //Esto es lo mismo que la lambda explícita
 				sum();
+		return inversionTotal;
 	}
-	*/
-
 	
-	/*
-	public static double calcularGananciaTotalEsperada(LinkedList<Producto> productos) {
-		double gananciaTotalEs
+	public static double calcularGananciaEsperada(Optional<LinkedList<Producto>> productosOpt) {
+		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
+		double gananciaEsperada = productos.stream().
+				mapToDouble(producto -> producto.getGananciaLote()).
+				sum();
+		return gananciaEsperada;
 	}
-	*/
 
 }
