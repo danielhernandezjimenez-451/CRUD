@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class TestProductos {
 	
 	@Test
-	void gananciaIndividualPrecioVentaVeintePrecioCompraQuinceEsCinco() {
+	void obtenerGananciaIndividualPrecioVentaVeintePrecioCompraQuinceEsCinco() {
 		assertEquals(5, Producto.calcularGananciaIndividual(20, 15));
 	}
 	
@@ -37,22 +39,43 @@ public class TestProductos {
 	}
 	
 	@Test
+	void obtenerGananciaLoteDiezUnidadesGananciaCincoDaCincuenta() {
+		assertEquals(50, Producto.calcularGananciaLote(10, 5));
+	}
+	
+	@Test
+	void obtenerGananciaLoteCeroUnidadesLanzaExcepcion(){
+		assertThrows(IllegalArgumentException.class, () -> {
+			Producto.calcularGananciaLote(0, 10);
+		});
+	}
+	
+	@Test
+	void obtenerGananciaLoteCeroGananciaLanzaExcepcion() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			Producto.calcularGananciaLote(10, 0);
+		});
+	}
+	
+	@Test
 	void cantidadTotalDeTresProductosConDiezUnidadesEsTreinta() {
 		LinkedList <Producto> productos = new LinkedList<>();
 		productos.add(new Producto(10));
 		productos.add(new Producto(10));
 		productos.add(new Producto(10));
-		assertEquals(30, Producto.calcularCantidadTotalProductos(productos));
+		assertEquals(30, Producto.calcularCantidadTotalInventario(Optional.of(productos)));
 	}
 	
 	@Test
-	@DisplayName ("Cantidad total de 3 productos con -5 unidades -> -15")
-	void cantidadTotalDeTresProductosConMenosCincoUnidadesEsMenosQuince() {
+	void cantidadTotalDeInventarioSinProductosDaCero() {
 		LinkedList <Producto> productos = new LinkedList<>();
-		productos.add(new Producto(-5));
-		productos.add(new Producto(-5));
-		productos.add(new Producto(-5));
-		assertEquals(-15, Producto.calcularCantidadTotalProductos(productos));
+		assertEquals(0, Producto.calcularCantidadTotalInventario(Optional.of(productos)));
+	}
+	
+	@Test
+	void cantidadTotalDeInventarioProductosNullDaCero() {
+		LinkedList <Producto> productos = null;
+		assertThrows(NullPointerException.class, () -> Producto.calcularCantidadTotalInventario(Optional.of(productos)));
 	}
 	
 	

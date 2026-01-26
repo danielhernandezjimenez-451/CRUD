@@ -1,6 +1,7 @@
 package com.academia.backend.crud;
 
 import java.util.LinkedList;
+import java.util.Optional;
 
 public class Producto {
 
@@ -14,6 +15,10 @@ public class Producto {
 	private double precioVenta;
 	private double ganancia;
 	private int unidades;
+	
+	public Producto() {
+		
+	}
 	
 	public Producto(String nombre, double contenido, double precioCompra, double precioVenta, int unidades) {
 		contadorDeProductos++;
@@ -96,11 +101,16 @@ public class Producto {
 	}
 	
 	public static double calcularGananciaLote(int unidades, double ganancia) {
-		return unidades * ganancia;
+		if (unidades <= 0 || ganancia <= 0) {
+			throw new IllegalArgumentException("Las unidades o la ganancia no pueden ser 0");
+		}else {
+			return unidades * ganancia;
+		}
 	}
 	
-	public static int calcularCantidadTotalProductos(LinkedList<Producto> productos) {
+	public static int calcularCantidadTotalInventario(Optional <LinkedList<Producto>> productosOpt) {
 		int totalProductos = 0;
+		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
 		totalProductos = productos.stream().
 				mapToInt(Producto::getUnidades).
 				sum();
@@ -111,10 +121,11 @@ public class Producto {
 	public static double calcularInversionTotal(LinkedList<Producto> producto) {
 		double inversionTotal = 0;
 		inversionTotal = productos.stream().
-				map(Producto::getUnidades*getGanancia).
+				map((Producto producto : Productos) -> {}).
 				sum();
 	}
 	*/
+
 	
 	/*
 	public static double calcularGananciaTotalEsperada(LinkedList<Producto> productos) {
