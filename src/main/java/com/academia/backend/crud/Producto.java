@@ -77,6 +77,8 @@ public class Producto {
 	public void setPrecioCompra(double precioCompra) {
 		this.precioCompra = precioCompra;
 		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
+		precioCompraLote = calcularPrecioCompraLote(unidades, precioCompra);
+		gananciaLote = calcularGananciaLote(unidades, ganancia);
 	}
 
 	public double getPrecioVenta() {
@@ -86,6 +88,7 @@ public class Producto {
 	public void setPrecioVenta(double precioVenta) {
 		this.precioVenta = precioVenta;
 		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
+		gananciaLote = calcularGananciaLote(unidades, ganancia);
 	}
 
 	public int getUnidades() {
@@ -94,18 +97,12 @@ public class Producto {
 
 	public void setUnidades(int unidades) {
 		this.unidades = unidades;
-	}
-	
-	public void setPrecioCompraLote(double precioCompraLote) {
-		this.precioCompraLote = precioCompraLote;
+		precioCompraLote = calcularPrecioCompraLote(unidades, precioCompra);
+		gananciaLote = calcularGananciaLote(unidades, ganancia);
 	}
 	
 	public double getPrecioCompraLote() {
 		return precioCompraLote;
-	}
-	
-	public void setGananciaLote(double gananciaLote) {
-		this.gananciaLote = gananciaLote;
 	}
 	
 	public double getGananciaLote() {
