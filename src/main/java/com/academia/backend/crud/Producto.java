@@ -1,8 +1,11 @@
 package com.academia.backend.crud;
 
+import java.util.LinkedList;
+
 public class Producto {
 
 	private static int contadorDeProductos = 0;
+	private static LinkedList<Producto> productos = new LinkedList<>();
 
 	private String id;
 	private String nombre;
@@ -20,7 +23,17 @@ public class Producto {
 		this.precioCompra = precioCompra;
 		this.precioVenta = precioVenta;
 		this.unidades = unidades;
-		ganancia = precioVenta - precioCompra;
+		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
+	}
+	
+	public Producto(double precioCompra, double precioVenta, int unidades) {
+		this.precioCompra = precioCompra;
+		this.precioVenta = precioVenta;
+		this.unidades = unidades;
+	}
+	
+	public Producto(int unidades) {
+		this.unidades = unidades;
 	}
 
 	public String getId(){
@@ -49,6 +62,7 @@ public class Producto {
 
 	public void setPrecioCompra(double precioCompra) {
 		this.precioCompra = precioCompra;
+		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
 	}
 
 	public double getPrecioVenta() {
@@ -57,6 +71,7 @@ public class Producto {
 
 	public void setPrecioVenta(double precioVenta) {
 		this.precioVenta = precioVenta;
+		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
 	}
 
 	public int getUnidades() {
@@ -71,5 +86,36 @@ public class Producto {
 	public String toString() {
 		return String.format("| %-10s| %-20s| %-9s| $%-13.2f| $%-12.2f| $%-12.2f| %-8d|%n", id, nombre, contenido, precioCompra, precioVenta, ganancia, unidades);
 	}
+	
+	public static double calcularGananciaIndividual(double precioVenta, double precioCompra) {
+		return precioVenta - precioCompra;
+	}
+	
+	public static double calcularGananciaLote(int unidades, double ganancia) {
+		return unidades * ganancia;
+	}
+	
+	public static int calcularCantidadTotalProductos(LinkedList<Producto> productos) {
+		int totalProductos = 0;
+		totalProductos = productos.stream().
+				mapToInt(Producto::getUnidades).
+				sum();
+		return totalProductos;
+	}
+	
+	/*
+	public static double calcularInversionTotal(LinkedList<Producto> producto) {
+		double inversionTotal = 0;
+		inversionTotal = productos.stream().
+				map(Producto::getUnidades*getGanancia).
+				sum();
+	}
+	*/
+	
+	/*
+	public static double calcularGananciaTotalEsperada(LinkedList<Producto> productos) {
+		double gananciaTotalEs
+	}
+	*/
 
 }
