@@ -60,7 +60,7 @@ public class Principal {
 					System.out.println("Ingresa una opción válida");
 			}
 			Vista.limpiarPantalla();
-		}while(seleccionUsuario.isBlank() || seleccionUsuario == null || !seleccionUsuario.equalsIgnoreCase("0"));
+		}while(seleccionUsuario.isBlank() || seleccionUsuario == null || !seleccionUsuario.equals("0"));
 	}
 
 	public static boolean buscarProducto(String id){

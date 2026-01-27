@@ -22,7 +22,7 @@ public class Vista {
 		sb.append("[4] - Eliminar productos\n");
 		sb.append("[5] - Buscar productos\n");
 		sb.append("[6] - Pronostico economico\n");
-		sb.append("[7] - Salir\n");
+		sb.append("[0] - Salir\n");
 		sb.append("Escribe el número de la accion que deseas realizar");
 		System.out.println(sb);
 	}
