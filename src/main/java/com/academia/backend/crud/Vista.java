@@ -66,74 +66,89 @@ public class Vista {
 	}
 
 	public static void modificarProductos(){
-		String eleccionUsuario;
-		String id;
-		do{
-			limpiarPantalla();
-			System.out.println("Desea modificar productos? [s/n]");
-			eleccionUsuario = obtenerValorTexto("Opcion");
-			if (eleccionUsuario.equals("s")) {
+		if(Principal.productos.size() == 0) {
+			System.out.println("Aun no hay productos para modificar, presiona enter para volver al menu principal");
+			scan.nextLine();
+		}else {
+			String eleccionUsuario;
+			String id;
+			do{
 				limpiarPantalla();
-				id = obtenerValorNumericoEnTexto("Codigo del producto a modificar");
-				boolean seModificoProducto = false;
-				do{
+				System.out.println("Desea modificar productos? [s/n]");
+				eleccionUsuario = obtenerValorTexto("Opcion");
+				if (eleccionUsuario.equals("s")) {
 					limpiarPantalla();
-					if(Principal.buscarProducto(id)){
-					String campoAModificar = obtenerValorTexto("Campo del producto a modificar");
-					seModificoProducto = Principal.modificarProducto(campoAModificar);
-					}
-				}while(!seModificoProducto);
-			}
-		}while(!eleccionUsuario.equals("n"));
+					id = obtenerValorNumericoEnTexto("Codigo del producto a modificar");
+					boolean seModificoProducto = false;
+					do{
+						limpiarPantalla();
+						if(Principal.buscarProducto(id)){
+						String campoAModificar = obtenerValorTexto("Campo del producto a modificar");
+						seModificoProducto = Principal.modificarProducto(campoAModificar);
+						}
+					}while(!seModificoProducto);
+				}
+			}while(!eleccionUsuario.equals("n"));
+		}
 	}
 
 	public static void eliminarProductos(){
-		String eleccionUsuario;
-		String eleccionUsuario2;
-		String id;
-		do{
-			limpiarPantalla();
-			System.out.println("Desea eliminar productos?");
-			eleccionUsuario = obtenerValorTexto("[s/n]");
-			if (eleccionUsuario.equals("s")) {
-				id = obtenerValorNumericoEnTexto("Codigo del producto a eliminar");
-				if (Principal.buscarProducto(id)) {
-					System.out.println("Desea eliminar este producto?");
-					eleccionUsuario2 = obtenerValorTexto("[s/n]");
-					if (eleccionUsuario2.equals("s")) {
-						Principal.eliminarProducto();
+		if(Principal.productos.size() == 0) {
+			System.out.println("Aun no hay productos para eliminar, presiona enter para volver al menu principal");
+			scan.nextLine();
+		}else {
+			String eleccionUsuario;
+			String eleccionUsuario2;
+			String id;
+			do{
+				limpiarPantalla();
+				System.out.println("Desea eliminar productos?");
+				eleccionUsuario = obtenerValorTexto("[s/n]");
+				if (eleccionUsuario.equals("s")) {
+					id = obtenerValorNumericoEnTexto("Codigo del producto a eliminar");
+					if (Principal.buscarProducto(id)) {
+						System.out.println("Desea eliminar este producto?");
+						eleccionUsuario2 = obtenerValorTexto("[s/n]");
+						if (eleccionUsuario2.equals("s")) {
+							Principal.eliminarProducto();
+						}
 					}
 				}
-			}
 
-		}while(!eleccionUsuario.equals("n"));
+			}while(!eleccionUsuario.equals("n"));
+		}
 
 	}
 
 	public static void buscarProductos(){
-		String eleccionUsuario;
-		boolean campoValido = true;
-		if(Principal.productos.size()==0){
-			System.out.println("Aún no hay productos para buscar");
-		}else{
-			do{
-				limpiarPantalla();
-				System.out.println("Desea realizar una busqueda de productos?");
-				eleccionUsuario = obtenerValorTexto("[s/n]");
-				if(eleccionUsuario.equals("s")){
-					do{
-						limpiarPantalla();
-						System.out.println("Ingrese el campo para filtrar los productos");
-						String campo = obtenerValorTexto("la opcion [codigo] [nombre] [contenido] [precio compra] [precio venta] [ganancia] [unidades]");
-						if(camposValidos.contains(campo)){
-							buscarPorCampo(campo);
-							campoValido = true;
-						}else{
-							campoValido = false;
-						}
-					}while(!campoValido);				
-				}
-			}while(!eleccionUsuario.equals("n"));
+		if(Principal.productos.size() == 0) {
+			System.out.println("Aun no hay productos para buscar, presiona enter para volver al menu principal");
+			scan.nextLine();
+		}else {
+			String eleccionUsuario;
+			boolean campoValido = true;
+			if(Principal.productos.size()==0){
+				System.out.println("Aún no hay productos para buscar");
+			}else{
+				do{
+					limpiarPantalla();
+					System.out.println("Desea realizar una busqueda de productos?");
+					eleccionUsuario = obtenerValorTexto("[s/n]");
+					if(eleccionUsuario.equals("s")){
+						do{
+							limpiarPantalla();
+							System.out.println("Ingrese el campo para filtrar los productos");
+							String campo = obtenerValorTexto("la opcion [codigo] [nombre] [contenido] [precio compra] [precio venta] [ganancia] [unidades]");
+							if(camposValidos.contains(campo)){
+								buscarPorCampo(campo);
+								campoValido = true;
+							}else{
+								campoValido = false;
+							}
+						}while(!campoValido);				
+					}
+				}while(!eleccionUsuario.equals("n"));
+			}
 		}
 	}
 	
