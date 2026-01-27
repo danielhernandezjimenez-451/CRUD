@@ -145,7 +145,7 @@ public class Producto {
 	public static int calcularCantidadTotalInventario(Optional <LinkedList<Producto>> productosOpt) {
 		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
 		int totalProductos = productos.stream().
-				mapToInt(Producto::getUnidades).
+				mapToInt(producto -> producto.getUnidades()).
 				sum();
 		return totalProductos;
 	}
@@ -153,7 +153,7 @@ public class Producto {
 	public static double calcularInversionTotal(Optional<LinkedList<Producto>> productosOpt) {
 		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
 		double inversionTotal = productos.stream().
-				mapToDouble(Producto::getPrecioCompraLote). //Esto es lo mismo que la lambda explícita
+				mapToDouble(producto -> producto.getPrecioCompraLote()). //Esto es lo mismo que la lambda explícita
 				sum();
 		return inversionTotal;
 	}
@@ -161,7 +161,7 @@ public class Producto {
 	public static double calcularGananciaEsperada(Optional<LinkedList<Producto>> productosOpt) {
 		LinkedList<Producto> productos = productosOpt.orElse(new LinkedList<>());
 		double gananciaEsperada = productos.stream().
-				mapToDouble(Producto::getGananciaLote).
+				mapToDouble(producto -> producto.getGananciaLote()).
 				sum();
 		return gananciaEsperada;
 	}

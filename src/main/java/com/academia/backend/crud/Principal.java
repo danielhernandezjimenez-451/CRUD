@@ -80,21 +80,21 @@ public class Principal {
 		boolean productoModificado = true;
 		switch (campoAModificar) {
 			case "nombre":
-				productoAModificar.setNombre(Vista.obtenerValorTexto("Ingrese el nuevo nombre de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				productoAModificar.setNombre(Vista.obtenerValorTexto(" el nuevo nombre de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 			
 			case "contenido":
-				productoAModificar.setContenido(Vista.obtenerValorDoble("Ingrese el nuevo contenido de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				productoAModificar.setContenido(Vista.obtenerValorDoble(" el nuevo contenido de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 
 			case "precio compra":
-				productoAModificar.setPrecioCompra(Vista.obtenerValorDoble("Ingrese el nuevo precio de compra de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				productoAModificar.setPrecioCompra(Vista.obtenerValorDoble(" el nuevo precio de compra de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 			case "precio venta":
-				productoAModificar.setPrecioVenta(Vista.obtenerValorDoble("Ingrese el nuevo precio de venta de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				productoAModificar.setPrecioVenta(Vista.obtenerValorDoble(" el nuevo precio de venta de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 			case "unidades":
-				productoAModificar.setUnidades(Vista.obtenerValorEntero("Ingrese la nueva cantidad de unidades de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				productoAModificar.setUnidades(Vista.obtenerValorEntero(" la nueva cantidad de unidades de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 			default:
 				System.out.println("Ingresa un campo valido");
