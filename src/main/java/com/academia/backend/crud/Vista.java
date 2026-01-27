@@ -16,14 +16,14 @@ public class Vista {
 		limpiarPantalla();
 		StringBuilder sb = new StringBuilder();
 		sb.append("- - - - - - - - - MENU PRINCIPAL - - - - - - - - -\n");
-		sb.append("Agregar productos\n");
-		sb.append("Consultar productos\n");
-		sb.append("Modificar productos\n");
-		sb.append("Eliminar productos\n");
-		sb.append("Buscar productos\n");
-		sb.append("Pronostico economico\n");
-		sb.append("Salir\n");
-		sb.append("Escribe la accion que deseas realizar");
+		sb.append("[1] - Agregar productos\n");
+		sb.append("[2] - Consultar productos\n");
+		sb.append("[3] - Modificar productos\n");
+		sb.append("[4] - Eliminar productos\n");
+		sb.append("[5] - Buscar productos\n");
+		sb.append("[6] - Pronostico economico\n");
+		sb.append("[7] - Salir\n");
+		sb.append("Escribe el número de la accion que deseas realizar");
 		System.out.println(sb);
 	}
 
@@ -74,6 +74,7 @@ public class Vista {
 	}
 
 	public static void modificarProductos(){
+		limpiarPantalla();
 		if(Principal.productos.size() == 0) {
 			System.out.println("Aun no hay productos para modificar, presiona enter para volver al menu principal");
 			scan.nextLine();
@@ -101,6 +102,7 @@ public class Vista {
 	}
 
 	public static void eliminarProductos(){
+		limpiarPantalla();
 		if(Principal.productos.size() == 0) {
 			System.out.println("Aun no hay productos para eliminar, presiona enter para volver al menu principal");
 			scan.nextLine();
@@ -129,6 +131,7 @@ public class Vista {
 	}
 
 	public static void buscarProductos(){
+		limpiarPantalla();
 		if(Principal.productos.size() == 0) {
 			System.out.println("Aun no hay productos para buscar, presiona enter para volver al menu principal");
 			scan.nextLine();
@@ -317,7 +320,10 @@ public class Vista {
 	}
 
 	public static void limpiarPantalla(){
+		/*
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
+		*/
+		System.out.println("\n".repeat(50));
 	}
 }

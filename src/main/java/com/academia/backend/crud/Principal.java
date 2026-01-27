@@ -29,38 +29,38 @@ public class Principal {
 			Vista.mostrarMenuPrincipal();
 			seleccionUsuario = scan.nextLine().toLowerCase().trim();
 			switch (seleccionUsuario) {
-				case "agregar":
+				case "1":
 					Vista.agregarProductos();
 					break;
 
-				case "consultar":
+				case "2":
 					Vista.mostrarProductos();
 					break;
 
-				case "modificar":
+				case "3":
 					Vista.modificarProductos();
 					break;
 
-				case "eliminar":
+				case "4":
 					Vista.eliminarProductos();
 					break;
 				
-				case "buscar":
+				case "5":
 					Vista.buscarProductos();
 					break;
 					
-				case "pronostico":
+				case "6":
 					Vista.mostrarPronosticoEconomico();
 					break;
 
-				case "salir":
+				case "0":
 					System.out.println("Hasta luego");
 					break;
 				default:
 					System.out.println("Ingresa una opción válida");
 			}
 			Vista.limpiarPantalla();
-		}while(seleccionUsuario.isBlank() || seleccionUsuario == null || !seleccionUsuario.equalsIgnoreCase("salir"));
+		}while(seleccionUsuario.isBlank() || seleccionUsuario == null || !seleccionUsuario.equalsIgnoreCase("0"));
 	}
 
 	public static boolean buscarProducto(String id){
