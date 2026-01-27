@@ -22,7 +22,6 @@ public class Producto {
 	}
 	
 	public Producto(String nombre, double contenido, double precioCompra, double precioVenta, int unidades) {
-		contadorDeProductos++;
 		id = Integer.toString(contadorDeProductos);
 		this.nombre = nombre;
 		this.contenido = contenido;
@@ -32,6 +31,7 @@ public class Producto {
 		ganancia = calcularGananciaIndividual(precioVenta, precioCompra);
 		precioCompraLote = calcularPrecioCompraLote(unidades, precioCompra);
 		gananciaLote = calcularGananciaLote(unidades, ganancia);
+		contadorDeProductos++;
 	}
 	
 	public Producto(double precioCompra, double precioVenta, int unidades) {

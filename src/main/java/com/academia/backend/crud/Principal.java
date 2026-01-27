@@ -88,10 +88,27 @@ public class Principal {
 				break;
 
 			case "precio compra":
-				productoAModificar.setPrecioCompra(Vista.obtenerValorDoble(" el nuevo precio de compra de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				double precioCompraAnterior = productoAModificar.getPrecioCompra();
+				try {
+					productoAModificar.setPrecioCompra(Vista.obtenerValorDoble(" el nuevo precio de compra de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				}catch(IllegalArgumentException iae) {
+					productoModificado = false;
+					productoAModificar.setPrecioCompra(precioCompraAnterior);
+					System.out.println("No se modifico el producto");
+					System.out.println(iae.getMessage());
+				}
 				break;
 			case "precio venta":
-				productoAModificar.setPrecioVenta(Vista.obtenerValorDoble(" el nuevo precio de venta de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				double precioVentaAnterior = productoAModificar.getPrecioVenta();
+				try {
+					productoAModificar.setPrecioVenta(Vista.obtenerValorDoble(" el nuevo precio de venta de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
+				}catch(IllegalArgumentException iae) {
+					productoModificado = false;
+					productoAModificar.setPrecioVenta(precioVentaAnterior);
+					System.out.println("No se modifico el producto");
+					System.out.println(iae.getMessage());
+				}
+				
 				break;
 			case "unidades":
 				productoAModificar.setUnidades(Vista.obtenerValorEntero(" la nueva cantidad de unidades de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));

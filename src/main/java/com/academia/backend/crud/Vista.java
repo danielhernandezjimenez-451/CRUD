@@ -33,8 +33,15 @@ public class Vista {
 			limpiarPantalla();
 			System.out.println("Desea agregar mas productos? [s/n]");
 			eleccionUsuario = obtenerValorTexto("Opcion");
-			if (eleccionUsuario.equals("s"))
-				Principal.productos.add(crearProducto());
+			try {
+				if (eleccionUsuario.equals("s"))
+					Principal.productos.add(crearProducto());
+			}catch(IllegalArgumentException iae) {
+				System.out.println(iae.getMessage());
+				System.out.println("Presione enter para volver a cargar datos del producto");
+				scan.nextLine();
+			}
+			
 		}while(!eleccionUsuario.equals("n"));
 	}
 
