@@ -6,7 +6,6 @@ import java.util.Optional;
 public class Producto {
 
 	private static int contadorDeProductos = 0;
-	private static LinkedList<Producto> productos = new LinkedList<>();
 
 	private String id;
 	private String nombre;
@@ -120,7 +119,7 @@ public class Producto {
 	
 	public static double calcularGananciaIndividual(double precioVenta, double precioCompra) {
 		if (precioVenta <= 0 || precioCompra <= 0 || precioVenta <= precioCompra) {
-			throw new IllegalArgumentException("Los precios no pueden ser 0 o menores. La venta no puede ser menor o igual que la compra");
+			throw new IllegalArgumentException("Los precios no pueden ser 0 o menores. El precio de venta no puede ser menor o igual que el de compra");
 		}else {
 			return precioVenta - precioCompra;
 		}

@@ -1,6 +1,6 @@
 package com.academia.backend.crud;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Vista {
 
 	public static Scanner scan = new Scanner(System.in);
-	public static LinkedList <String> camposValidos = new LinkedList<>(Arrays.asList("codigo", "nombre", "contenido", "precio compra", "precio venta", "ganancia", "unidades"));
+	public static  HashSet <String> camposValidos = new HashSet<>(Arrays.asList("codigo", "nombre", "contenido", "precio compra", "precio venta", "ganancia", "unidades"));
 
 	public static void mostrarMenuPrincipal() {
 		limpiarPantalla();
