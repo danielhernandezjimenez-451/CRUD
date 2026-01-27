@@ -18,10 +18,12 @@ public class Principal {
 	public static Producto productoSeleccionado;
 	
 	public static void main(String[] args) {
+		/*
 		Producto p1 = new Producto("Coca Cola", 355, 8.5, 12, 10);
 		Producto p2 = new Producto("Doritos", 56, 10.50, 18, 30);
 		productos.add(p1);
 		productos.add(p2);
+		*/
 			
 		do {
 			Vista.mostrarMenuPrincipal();
