@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Vista {
 
 	public static Scanner scan = new Scanner(System.in);
-	public static  HashSet <String> camposValidos = new HashSet<>(Arrays.asList("codigo", "nombre", "contenido", "precio compra", "precio venta", "ganancia", "unidades"));
+	public static  HashSet <String> camposValidos = new HashSet<>(Arrays.asList("codigo", "nombre", "contenido", "precio compra", "precio venta", "ganancia", "ganancia minima", "unidades"));
 
 	public static void mostrarMenuPrincipal() {
 		limpiarPantalla();
@@ -139,7 +139,7 @@ public class Vista {
 						do{
 							limpiarPantalla();
 							System.out.println("Ingrese el campo para filtrar los productos");
-							String campo = obtenerValorTexto("la opcion [codigo] [nombre] [contenido] [precio compra] [precio venta] [ganancia] [unidades]");
+							String campo = obtenerValorTexto("la opcion [codigo] [nombre] [contenido] [precio compra] [precio venta] [ganancia] [ganancia minima] [unidades]");
 							if(camposValidos.contains(campo)){
 								buscarPorCampo(campo);
 								campoValido = true;
@@ -203,6 +203,14 @@ public class Vista {
 					filter(producto -> producto.getGanancia() == ganancia).
 					forEach(producto -> sb.append(producto.toString()));
 				mostrarProductosFiltrados(campo, sb.toString(), String.valueOf(ganancia));
+				break;
+				
+			case "ganancia minima":
+				double gananciaMinima = obtenerValorDoble("la ganancia minima para filtrar productos");
+				Principal.productos.stream().
+					filter(producto -> producto.getGanancia() >= gananciaMinima).
+					forEach(producto -> sb.append(producto.toString()));
+				mostrarProductosFiltrados(campo, sb.toString(), String.valueOf(gananciaMinima));
 				break;
 
 			case "unidades":
