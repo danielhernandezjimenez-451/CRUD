@@ -81,15 +81,15 @@ public class Principal {
 	public static boolean modificarProducto(String campoAModificar){
 		boolean productoModificado = true;
 		switch (campoAModificar) {
-			case "nombre":
+			case "1":
 				productoAModificar.setNombre(Vista.obtenerValorTexto(" el nuevo nombre de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 			
-			case "contenido":
+			case "2":
 				productoAModificar.setContenido(Vista.obtenerValorDoble(" el nuevo contenido de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 
-			case "precio compra":
+			case "3":
 				double precioCompraAnterior = productoAModificar.getPrecioCompra();
 				try {
 					productoAModificar.setPrecioCompra(Vista.obtenerValorDoble(" el nuevo precio de compra de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
@@ -100,7 +100,7 @@ public class Principal {
 					System.out.println(iae.getMessage());
 				}
 				break;
-			case "precio venta":
+			case "4":
 				double precioVentaAnterior = productoAModificar.getPrecioVenta();
 				try {
 					productoAModificar.setPrecioVenta(Vista.obtenerValorDoble(" el nuevo precio de venta de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
@@ -112,7 +112,7 @@ public class Principal {
 				}
 				
 				break;
-			case "unidades":
+			case "5":
 				productoAModificar.setUnidades(Vista.obtenerValorEntero(" la nueva cantidad de unidades de " + productoAModificar.getNombre() + " de " + productoAModificar.getContenido()));
 				break;
 			default:

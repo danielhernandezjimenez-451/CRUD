@@ -31,18 +31,23 @@ public class Vista {
 		String eleccionUsuario;
 		do{
 			limpiarPantalla();
-			System.out.println("Desea agregar mas productos? [s/n]");
+			System.out.println("Desea agregar mas productos? [1]-SI [0]-NO");
 			eleccionUsuario = obtenerValorTexto("Opcion");
+			if (eleccionUsuario.equals("1")) {
+				Principal.productos.add(crearProducto());
+			}
+			/*
+			 * Esto hay que refactorizarlo para no tener este try catch en este bucle
 			try {
-				if (eleccionUsuario.equals("s"))
+				if (eleccionUsuario.equals("1")){
 					Principal.productos.add(crearProducto());
+				}	
 			}catch(IllegalArgumentException iae) {
 				System.out.println(iae.getMessage());
 				System.out.println("Presione enter para volver a cargar datos del producto");
 				scan.nextLine();
-			}
-			
-		}while(!eleccionUsuario.equals("n"));
+			}*/
+		}while(!eleccionUsuario.equals("0"));
 	}
 
 	public static Producto crearProducto(){
