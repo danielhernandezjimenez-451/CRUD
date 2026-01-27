@@ -1,6 +1,7 @@
 package com.academia.backend.crud;
 
 import java.util.LinkedList;
+import java.util.Optional;
 import java.awt.Dimension;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class Principal {
 	public static String seleccionUsuario = "";
 	public static Scanner scan = new Scanner(System.in);
 	public static Producto productoAModificar;
+	public static Optional<Producto> productoAModificarOpt;
 	public static Producto productoSeleccionado;
 	
 	public static void main(String[] args) {
@@ -61,14 +63,12 @@ public class Principal {
 
 	public static boolean buscarProducto(String id){
 		boolean productoEncontrado = false;
-		for(Producto producto : productos){
-			if(producto.getId().equals(id)){
-				productoAModificar = producto;
-				productoEncontrado = true;
-				break;
-			}
-		}
+		productoAModificarOpt = productos.stream().
+				filter(producto -> producto.getId().equals(id)).
+				findFirst();
+		productoEncontrado = productoAModificarOpt.isPresent();
 		if (productoEncontrado) {
+			productoAModificar = productoAModificarOpt.get();
 			System.out.println("Producto encontrado: " + productoAModificar.getId() + " " + productoAModificar.getNombre() + " " + productoAModificar.getContenido());
 		}else{
 			System.out.println("No se encontro un producto con id " + id);
