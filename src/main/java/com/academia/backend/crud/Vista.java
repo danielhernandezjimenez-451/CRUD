@@ -57,9 +57,10 @@ public class Vista {
 			String titulo = String.format("| %-10s| %-20s| %-5s| %-13s| %-13s| %-13s| %-7s|%n", "Codigo", "Nombre", "Contenido", "Precio Compra ", "Precio Venta", "Ganancia", "Unidades");
 			System.out.print(titulo);
 			System.out.println("-".repeat(102));
-			for (Producto producto : Principal.productos) {
-				System.out.println(producto.toString());
-			}
+			StringBuilder sb = new StringBuilder();
+			Principal.productos.stream().
+				forEach(producto -> sb.append(producto.toString()));
+			System.out.println(sb);
 		}
 		System.out.println("Presiona enter para volver al menu principal");
 		scan.nextLine();
