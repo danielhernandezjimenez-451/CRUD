@@ -61,17 +61,13 @@ public class Vista {
 
 	public static void mostrarProductos() {
 		limpiarPantalla();
-		if (Principal.productos.size() == 0) {
-			System.out.println("Aun no hay productos para mostrar");
-		}else{
-			String titulo = String.format("| %-10s| %-20s| %-5s| %-13s| %-13s| %-13s| %-7s|%n", "Codigo", "Nombre", "Contenido", "Precio Compra ", "Precio Venta", "Ganancia", "Unidades");
-			System.out.print(titulo);
-			System.out.println("-".repeat(102));
-			StringBuilder sb = new StringBuilder();
-			Principal.productos.stream().
-				forEach(producto -> sb.append(producto.toString()));
-			System.out.println(sb);
-		}
+		String titulo = String.format("| %-10s| %-20s| %-5s| %-13s| %-13s| %-13s| %-7s|%n", "Codigo", "Nombre", "Contenido", "Precio Compra ", "Precio Venta", "Ganancia", "Unidades");
+		System.out.print(titulo);
+		System.out.println("-".repeat(102));
+		StringBuilder sb = new StringBuilder();
+		Principal.productos.stream().
+			forEach(producto -> sb.append(producto.toString()));
+		System.out.println(sb);
 		System.out.println("Presiona enter para volver al menu principal");
 		scan.nextLine();
 	}
