@@ -34,19 +34,27 @@ public class Principal {
 					break;
 
 				case "2":
-					Vista.mostrarProductos();
+					if(verificarHayProductos()) {
+						Vista.mostrarProductos();
+					}
 					break;
 
 				case "3":
-					Vista.modificarProductos();
+					if(verificarHayProductos()) {
+						Vista.modificarProductos();
+					}
 					break;
 
 				case "4":
-					Vista.eliminarProductos();
+					if(verificarHayProductos()) {
+						Vista.eliminarProductos();
+					}
 					break;
 				
 				case "5":
-					Vista.buscarProductos();
+					if(verificarHayProductos()) {
+						Vista.buscarProductos();
+					}
 					break;
 					
 				case "6":
@@ -56,11 +64,21 @@ public class Principal {
 				case "0":
 					System.out.println("Hasta luego");
 					break;
+					
 				default:
 					System.out.println("Ingresa una opción válida");
 			}
 			Vista.limpiarPantalla();
 		}while(seleccionUsuario.isBlank() || seleccionUsuario == null || !seleccionUsuario.equals("0"));
+	}
+	
+	public static boolean verificarHayProductos() {
+		if(productos.size() == 0) {
+			System.out.println("Aún no hay productos ingresados, presiona enter para continuar");
+			scan.nextLine();
+			return false;
+		}
+		return true;
 	}
 
 	public static boolean buscarProducto(String id){

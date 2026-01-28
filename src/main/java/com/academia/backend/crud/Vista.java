@@ -61,7 +61,6 @@ public class Vista {
 	}
 
 	public static void mostrarProductos() {
-		//Debe recibir el ArrayList de productos
 		limpiarPantalla();
 		if (Principal.productos.size() == 0) {
 			System.out.println("Aun no hay productos para mostrar");
@@ -80,17 +79,28 @@ public class Vista {
 
 	public static void modificarProductos(){
 		limpiarPantalla();
+		String eleccionUsuario;
+		String id;
+		do{
+			limpiarPantalla();
+			System.out.println("Desea modificar productos? [1]-SI [0]-NO");
+			eleccionUsuario = obtenerValorTexto("Opcion");
+			if (eleccionUsuario.equals("1")) {
+				id = solicitarIdProducto();
+				solicitarCampoModificar(id);
+			}
+		}while(!eleccionUsuario.equals("0"));
+
+		/*
+		 * Agregar una función que valide que los productos no estén vacíos
 		if(Principal.productos.size() == 0) {
 			System.out.println("Aun no hay productos para modificar, presiona enter para volver al menu principal");
 			scan.nextLine();
-		}else {
-			String eleccionUsuario;
-			String id;
-			do{
-				limpiarPantalla();
-				System.out.println("Desea modificar productos? [s/n]");
-				eleccionUsuario = obtenerValorTexto("Opcion");
-				if (eleccionUsuario.equals("s")) {
+		}*/
+			
+			
+				/*
+				if (eleccionUsuario.equals("1")) {
 					limpiarPantalla();
 					id = obtenerValorNumericoEnTexto("Codigo del producto a modificar");
 					boolean seModificoProducto = false;
@@ -102,8 +112,37 @@ public class Vista {
 						}
 					}while(!seModificoProducto);
 				}
-			}while(!eleccionUsuario.equals("n"));
-		}
+				*/
+			
+		
+	}
+	
+	public static String solicitarIdProducto() {
+		limpiarPantalla();
+		String id = obtenerValorNumericoEnTexto("Codigo del producto:");
+		return id;
+	}
+	
+	public static void solicitarCampoModificar(String id) {
+		boolean seModificoProducto = false;
+		do {
+			limpiarPantalla();
+			if(Principal.buscarProducto(id));{
+				mostrarCamposModificar();
+				String campoAModificar = obtenerValorTexto("Campo del producto a modificar");
+				seModificoProducto = Principal.modificarProducto(campoAModificar);
+			}
+		}while(!seModificoProducto);
+	}
+	
+	public static void mostrarCamposModificar() {
+		System.out.println("[1] - Codigo");
+		System.out.println("[2] - Nombre");
+		System.out.println("[3] - Contenido");
+		System.out.println("[4] - Precio Compra");
+		System.out.println("[5] - Precio Venta");
+		System.out.println("[6] - Ganancia");
+		System.out.println("[7] - Unidades");
 	}
 
 	public static void eliminarProductos(){
