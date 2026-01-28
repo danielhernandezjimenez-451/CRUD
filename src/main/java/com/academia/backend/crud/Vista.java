@@ -36,28 +36,27 @@ public class Vista {
 			if (eleccionUsuario.equals("1")) {
 				Principal.productos.add(crearProducto());
 			}
-			/*
-			 * Esto hay que refactorizarlo para no tener este try catch en este bucle
-			try {
-				if (eleccionUsuario.equals("1")){
-					Principal.productos.add(crearProducto());
-				}	
-			}catch(IllegalArgumentException iae) {
-				System.out.println(iae.getMessage());
-				System.out.println("Presione enter para volver a cargar datos del producto");
-				scan.nextLine();
-			}*/
 		}while(!eleccionUsuario.equals("0"));
 	}
 
 	public static Producto crearProducto(){
 		limpiarPantalla();
-		String nombre = obtenerValorTexto("Nombre del producto");
-		double contenido = obtenerValorDoble("Contenido del producto");
-		double precioCompra = obtenerValorDoble("Precio de Compra del producto");
-		double precioVenta = obtenerValorDoble("Precio de Venta del producto");
-		int unidades = obtenerValorEntero("Unidades del producto");
-		return new Producto(nombre, contenido, precioCompra, precioVenta, unidades);
+		Producto productoNuevo = null;
+		do {
+			String nombre = obtenerValorTexto("Nombre del producto");
+			double contenido = obtenerValorDoble("Contenido del producto");
+			double precioCompra = obtenerValorDoble("Precio de Compra del producto");
+			double precioVenta = obtenerValorDoble("Precio de Venta del producto");
+			int unidades = obtenerValorEntero("Unidades del producto");
+			try {
+				productoNuevo = new Producto(nombre, contenido, precioCompra, precioVenta, unidades);
+			}catch(IllegalArgumentException iae) {
+				System.out.println(iae.getMessage());
+				System.out.println("Presione enter para volver a cargar datos del producto");
+				scan.nextLine();
+			}
+		}while(productoNuevo == null);
+		return productoNuevo;
 	}
 
 	public static void mostrarProductos() {
